@@ -1,0 +1,565 @@
+:root {
+  color: #f8fbff;
+  background: #070713;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --card: rgba(16, 18, 43, 0.72);
+  --card-border: rgba(255, 255, 255, 0.16);
+  --pink: #ff4fd8;
+  --cyan: #48f5ff;
+  --lime: #c6ff4f;
+  --amber: #ffbd4f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+}
+
+.aurora-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 79, 216, 0.22), transparent 32rem),
+    radial-gradient(circle at bottom right, rgba(72, 245, 255, 0.18), transparent 30rem),
+    linear-gradient(135deg, #070713 0%, #12122e 52%, #090a16 100%);
+}
+
+.aurora-shell--soft {
+  --aurora-opacity: 0.42;
+}
+
+.aurora-shell--loud {
+  --aurora-opacity: 0.72;
+}
+
+.aurora-blob {
+  position: fixed;
+  z-index: 0;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 999px;
+  filter: blur(42px);
+  opacity: var(--aurora-opacity);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: float 16s ease-in-out infinite alternate;
+}
+
+.aurora-blob--one {
+  top: 4%;
+  left: -9rem;
+  background: #7c3cff;
+}
+
+.aurora-blob--two {
+  right: -8rem;
+  top: 18%;
+  background: #00e4ff;
+  animation-delay: -5s;
+}
+
+.aurora-blob--three {
+  right: 28%;
+  bottom: -13rem;
+  background: #ff2fb3;
+  animation-delay: -9s;
+}
+
+.noise-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 78%);
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 780px;
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
+}
+
+h2 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.hero-copy {
+  max-width: 680px;
+  color: rgba(248, 251, 255, 0.78);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.hero-badges {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.hero-badges span,
+.tag-cloud span,
+.tag-button,
+.rarity-pill {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.hero-badges span {
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.deck-column {
+  display: grid;
+  gap: 1rem;
+}
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 2rem;
+  background:
+    radial-gradient(
+      360px circle at var(--spotlight-x) var(--spotlight-y),
+      rgba(255, 255, 255, 0.2),
+      transparent 44%
+    ),
+    var(--card);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(24px);
+}
+
+.spotlight-card::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 79, 216, 0.24), transparent 28%, rgba(72, 245, 255, 0.16));
+  content: "";
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+.spotlight-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.meme-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.65fr);
+  gap: 1.25rem;
+  min-height: 540px;
+  padding: 1rem;
+}
+
+.meme-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.meme-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 620px;
+  object-fit: contain;
+}
+
+.rarity-pill {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.45rem 0.8rem;
+  color: var(--lime);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.meme-copy {
+  align-self: end;
+  padding: 1rem;
+}
+
+.meme-copy p:not(.eyebrow) {
+  color: rgba(248, 251, 255, 0.78);
+  line-height: 1.6;
+}
+
+.meter-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.meter-row div,
+.stats-grid div {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.1rem;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.meter-row span,
+.stats-grid dt,
+.level-orb span {
+  display: block;
+  color: rgba(248, 251, 255, 0.62);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meter-row strong,
+.stats-grid dd,
+.level-orb strong {
+  color: #fff;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.click-spark {
+  position: relative;
+  overflow: hidden;
+  min-height: 3.25rem;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  isolation: isolate;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.click-spark:hover {
+  transform: translateY(-2px);
+}
+
+.click-spark:focus-visible,
+.rail-dot:focus-visible,
+.tag-button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--pink), #7c3cff);
+  box-shadow: 0 18px 42px rgba(255, 79, 216, 0.25);
+}
+
+.ghost-button,
+.shuffle-button {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.shuffle-button {
+  color: var(--lime);
+}
+
+.spark {
+  position: absolute;
+  z-index: -1;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 0 0 0.35rem rgba(255, 255, 255, 0.14),
+    0 0 2rem var(--cyan);
+  transform: translate(-50%, -50%) scale(0);
+  animation: spark 620ms ease-out forwards;
+}
+
+.meme-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.rail-dot {
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(248, 251, 255, 0.72);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.rail-dot--active {
+  border-color: rgba(72, 245, 255, 0.72);
+  background: rgba(72, 245, 255, 0.18);
+  color: #fff;
+}
+
+.skill-panel {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  padding: 1.25rem;
+}
+
+.panel-heading h2 {
+  margin-bottom: 0;
+}
+
+.level-orb {
+  display: grid;
+  place-items: center;
+  width: 9.5rem;
+  height: 9.5rem;
+  margin: 0.5rem auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(198, 255, 79, 0.22), transparent 58%),
+    rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 4rem rgba(198, 255, 79, 0.16);
+}
+
+.level-orb strong {
+  font-size: 3.7rem;
+}
+
+.directive,
+.combo {
+  color: rgba(248, 251, 255, 0.78);
+  line-height: 1.55;
+}
+
+.progress-track {
+  overflow: hidden;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--pink), var(--cyan), var(--lime));
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.tag-cloud span,
+.tag-button {
+  padding: 0.52rem 0.75rem;
+  color: rgba(248, 251, 255, 0.82);
+  font-size: 0.86rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.stats-grid dd {
+  margin: 0.25rem 0 0;
+}
+
+.tag-section {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.6rem;
+  padding: 1.1rem;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+}
+
+.tag-section h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.tag-cloud--interactive {
+  justify-content: flex-end;
+}
+
+.tag-button {
+  cursor: pointer;
+}
+
+.tag-button--active {
+  border-color: rgba(198, 255, 79, 0.78);
+  color: var(--lime);
+}
+
+@keyframes float {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translate3d(6rem, 2rem, 0) rotate(20deg) scale(1.12);
+  }
+}
+
+@keyframes spark {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  70% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(6);
+  }
+}
+
+@media (max-width: 920px) {
+  .hero,
+  .feature-grid,
+  .meme-card,
+  .tag-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    align-items: start;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .meme-card {
+    min-height: auto;
+  }
+
+  .meme-frame img {
+    max-height: 520px;
+  }
+
+  .tag-cloud--interactive {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 1rem, 1180px);
+    padding-top: 1.25rem;
+  }
+
+  .controls,
+  .meter-row,
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shuffle-button {
+    grid-column: 1 / -1;
+  }
+
+  .spotlight-card,
+  .tag-section {
+    border-radius: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
