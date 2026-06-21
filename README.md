@@ -24,3 +24,5 @@ npm run build
 ## GitHub Pages
 
 The site is configured for GitHub Pages at `/meme-scroller/`. The Pages workflow runs tests, builds the Vite app, and deploys `dist` after changes land on `main`.
+
+In repository settings, set **Settings > Pages > Build and deployment > Source** to **GitHub Actions**. If it is left on **Deploy from a branch**, Pages will serve the source `index.html` from `main` instead of the built Vite app.
