@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/maxk-cyber/meme-scroller/issues"
   },
-  "homepage": "https://github.com/maxk-cyber/meme-scroller#readme",
+  "homepage": "https://maxk-cyber.github.io/meme-scroller/",
   "dependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
